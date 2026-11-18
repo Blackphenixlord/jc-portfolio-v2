@@ -1,0 +1,25 @@
+---
+layout: base.njk
+navKey: work
+title: Work and case studies | Joshua Collado
+description: Projects by Joshua Collado, with case studies on VITALS and the Inventory Chain System for NASA HUNCH, Los Alamos VR training, Progresso and Hall Pass.
+ogImage: work
+---
+{%- from "partials/macros.njk" import sheetList %}
+<div class="wrap">
+  <header class="page-head">
+    <h1>Work</h1>
+    <p class="lede">What I built, who it was for, and what came of it.</p>
+  </header>
+
+  <div class="filter" role="group" aria-label="Filter projects by discipline" data-filter hidden>
+    <button type="button" aria-pressed="true" data-cat="all">All</button>
+    {%- for key, label in site.categoryLabels %}
+    <button type="button" aria-pressed="false" data-cat="{{ key }}">{{ label }}</button>
+    {%- endfor %}
+  </div>
+  <p class="sr-only" role="status" data-filter-status></p>
+
+  {{ sheetList(projects, 'All projects', site, true) }}
+  <p class="empty-state" data-filter-empty hidden>Nothing in that discipline yet. <button class="toggle" type="button" data-cat-reset>Show all projects</button></p>
+</div>

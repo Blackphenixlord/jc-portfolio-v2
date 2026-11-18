@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{%- set pageTitle = title if title else site.name %}
+{%- set canonical = (site.url + page.url) if page.url else site.url %}
+{%- set ogImg = site.url + '/img/og/' + (ogImage or 'home') + '.png' %}
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="{{ canonical }}">
+{%- if site.preview or noindex %}
+<meta name="robots" content="noindex, nofollow">
+{%- endif %}
+<meta name="author" content="{{ site.name }}">
+<meta name="theme-color" content="#eef3f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1e20" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="{{ ogType or 'website' }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ ogTitle or pageTitle }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ ogImg }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ ogAlt or (site.name + ', portfolio') }}">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ ogTitle or pageTitle }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ ogImg }}">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="home" href="/">
+<link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.className = d.className.replace('no-js', 'js');
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') d.dataset.theme = t;
+      if (localStorage.getItem('dys') === '1') d.classList.add('dys');
+    } catch (e) {}
+  })();
+</script>
+{%- if heroImage %}{% preloadPic heroImage, heroSizes %}{% endif %}
+<script type="application/ld+json">{{ jsonld | default(defaultLd) | jsonld | safe }}</script>
+</head>
+<body data-contact="{{ site.email }}">
+<a class="skip" href="#main">Skip to main content</a>
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="/" {% if navKey == 'home' %}aria-current="page"{% endif %}>{% include "partials/logo.njk" %}<span>Joshua Collado</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <ul role="list">
+        {%- for item in site.nav %}
+        <li><a href="{{ item.href }}"{% if navKey == item.key %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+    <button class="search-btn" type="button" data-open-search aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.75" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m10.5 10.5 3.5 3.5" stroke="currentColor" stroke-width="1.5"/></svg>
+      <span class="label">Search</span><kbd>Ctrl K</kbd>
+    </button>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+{{ content | safe }}
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <section aria-labelledby="f-reach">
+      <h2 id="f-reach">Reach me</h2>
+      <ul role="list">
+        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        <li><a href="{{ site.github }}" rel="me">GitHub</a></li>
+        <li><a href="{{ site.linkedin }}" rel="me">LinkedIn</a></li>
+      </ul>
+    </section>
+    <section aria-labelledby="f-site">
+      <h2 id="f-site">On this site</h2>
+      <ul role="list">
+        {%- for item in site.nav %}<li><a href="{{ item.href }}">{{ item.label }}</a></li>{% endfor %}
+      </ul>
+    </section>
+    <section aria-labelledby="f-set">
+      <h2 id="f-set">Reading settings</h2>
+      <ul role="list">
+        <li><button class="toggle" type="button" data-toggle-theme>Theme: <span data-theme-label>system</span></button></li>
+        <li><button class="toggle" type="button" data-toggle-dys aria-pressed="false">Dyslexia mode</button></li>
+        <li class="small">OpenDyslexic, with wider spacing.</li>
+      </ul>
+    </section>
+    <section aria-labelledby="f-egg">
+      <h2 id="f-egg">Hidden things</h2>
+      <details>
+        <summary>Show where they are</summary>
+        <ul role="list">
+          {%- for egg in site.eggs %}<li>{{ egg.how }}: {{ egg.what }}</li>{% endfor %}
+        </ul>
+      </details>
+      <p class="small mt-5">© {{ site.buildYear }} Joshua Collado, South Texas.</p>
+    </section>
+  </div>
+</footer>
+
+<dialog class="cmdk" id="cmdk" aria-label="Search the site">
+  <form method="dialog" role="search">
+    <label for="cmdk-q">Search pages, projects and settings</label>
+    <input id="cmdk-q" type="text" autocomplete="off" spellcheck="false" placeholder="Search pages, projects and settings" role="combobox" aria-expanded="true" aria-controls="cmdk-list" aria-autocomplete="list">
+    <ul id="cmdk-list" role="listbox" aria-label="Results"></ul>
+    <p class="empty" hidden>Nothing matches that. Try a project name, like “VITALS”.</p>
+    <p class="hint"><kbd>↑</kbd> <kbd>↓</kbd> to move, <kbd>Enter</kbd> to open, <kbd>Esc</kbd> to close</p>
+  </form>
+</dialog>
+<div class="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="cmdk-data">{{ searchIndex | jsonld | safe }}</script>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

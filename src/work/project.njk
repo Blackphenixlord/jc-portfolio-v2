@@ -1,0 +1,129 @@
+---
+layout: base.njk
+navKey: work
+pagination:
+  data: projects
+  size: 1
+  alias: p
+permalink: "/work/{{ p.slug }}/"
+eleventyComputed:
+  title: "{{ p.title }}{% if p.sheet %} case study{% endif %} | Joshua Collado"
+  ogTitle: "{{ p.title }}"
+  description: "{{ p.summary | clip }}"
+  ogImage: "{{ p.slug }}"
+  ogType: article
+---
+{%- from "partials/macros.njk" import status, slot %}
+{%- set cases = projects | selectattr('sheet') %}
+{%- set idx = p.sheet - 1 if p.sheet else -1 %}
+
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><ol role="list"><li><a href="/">Home</a></li><li><a href="/work/">Work</a></li><li><span aria-current="page">{{ p.title }}</span></li></ol></nav>
+  <header class="page-head">
+    <h1>{{ p.title }}{% if p.subtitle %} <span class="sub">{{ p.subtitle }}</span>{% endif %}</h1>
+    <p class="lede">{{ p.summary }}</p>
+  </header>
+
+  <dl class="tb" aria-label="Project details">
+    <div><dt>My role</dt><dd class="v">{{ p.role }}</dd></div>
+    <div><dt>For</dt><dd class="v">{{ p.org }}</dd>{% if p.team %}<dd class="sub">{{ p.team }}</dd>{% endif %}</div>
+    <div><dt>Timeline</dt><dd class="v">{{ p.years }}</dd></div>
+    <div><dt>Status</dt><dd class="v">{{ status(p) }}</dd></div>
+    <div><dt>Built with</dt><dd class="sub">{{ p.stack | join(', ') }}</dd></div>
+    {%- if p.sheet %}<div><dt>Sheet</dt><dd class="v">{{ p.sheet }} of 5</dd></div>{% endif %}
+  </dl>
+
+{%- if p.case %}
+  {%- set c = p.case %}
+  <div class="cs">
+    <nav class="cs-toc" aria-labelledby="toc-h">
+      <h2 id="toc-h">On this page</h2>
+      <ol role="list">
+        <li><a href="#problem">The problem</a></li>
+        <li><a href="#role">My role</a></li>
+        <li><a href="#process">What I built</a></li>
+        <li><a href="#outcome">Outcome</a></li>
+        {%- if c.learned.length %}<li><a href="#learned">What I learned</a></li>{% endif %}
+        {%- if p.slots.length %}<li><a href="#todo">Still to add</a></li>{% endif %}
+      </ol>
+    </nav>
+    <div class="cs-body">
+      <section aria-labelledby="problem">
+        <h2 id="problem">The problem</h2>
+        {%- for para in c.problem %}<p>{{ para }}</p>{% endfor %}
+      </section>
+
+      <section aria-labelledby="role">
+        <h2 id="role">My role</h2>
+        {%- for para in c.role %}<p>{{ para }}</p>{% endfor %}
+      </section>
+
+      <section aria-labelledby="process">
+        <h2 id="process">What I built</h2>
+        {%- for para in c.process %}<p>{{ para }}</p>{% endfor %}
+        {%- if c.steps.length %}
+        <h3 class="mt-5">{% if p.slug == 'vitals' %}How an answer is made{% else %}How it went{% endif %}</h3>
+        <ol class="flow">
+          {%- for s in c.steps %}<li><b>{{ s[0] }}</b><span>{{ s[1] }}</span></li>{% endfor %}
+        </ol>
+        {%- endif %}
+        {%- if p.photos.length %}
+        <div class="photos{% if p.slug == 'vitals' %} wide{% endif %} mt-5">
+          {%- for ph in p.photos %}
+          <figure>{% pic ph.src, ph.alt, "(max-width: 760px) 100vw, 30vw" %}{% if ph.caption %}<figcaption>{{ ph.caption }}</figcaption>{% endif %}</figure>
+          {%- endfor %}
+        </div>
+        {%- endif %}
+      </section>
+
+      <section aria-labelledby="outcome">
+        <h2 id="outcome">Outcome</h2>
+        {%- if c.results.length %}
+        <dl class="figures">
+          {%- for r in c.results %}<div><dt>{{ r[0] }}</dt><dd>{{ r[1] }}</dd></div>{% endfor %}
+        </dl>
+        {%- endif %}
+        {%- for para in c.outcome %}<p{% if loop.last and p.slug == 'vitals' %} class="disclaimer"{% endif %}>{{ para }}</p>{% endfor %}
+        {%- if p.links.length %}
+        <ul class="links" role="list">{% for l in p.links %}<li><a href="{{ l.href }}">{{ l.label }}</a></li>{% endfor %}</ul>
+        {%- endif %}
+      </section>
+
+      {%- if c.learned.length %}
+      <section aria-labelledby="learned">
+        <h2 id="learned">What I learned</h2>
+        {%- for para in c.learned %}<p>{{ para }}</p>{% endfor %}
+      </section>
+      {%- endif %}
+
+      {%- if p.slots.length %}
+      <section aria-labelledby="todo">
+        <h2 id="todo">Still to add</h2>
+        <div class="slots">{% for s in p.slots %}{{ slot(s) }}{% endfor %}</div>
+      </section>
+      {%- endif %}
+
+      {%- if p.internship %}
+      <p>The program behind it: <a href="{{ p.internship.href }}">{{ p.internship.label }}</a>. Want the detail? <a href="/contact/">Get in touch</a>.</p>
+      {%- endif %}
+
+      <nav class="pager" aria-label="More case studies">
+        {%- if idx > 0 %}{% set prev = cases[idx - 1] %}<a href="/work/{{ prev.slug }}/"><span>Previous sheet</span><strong>{{ prev.title }}</strong></a>{% endif %}
+        {%- if idx < cases.length - 1 %}{% set next = cases[idx + 1] %}<a class="next" href="/work/{{ next.slug }}/"><span>Next sheet</span><strong>{{ next.title }}</strong></a>{% endif %}
+      </nav>
+    </div>
+  </div>
+{%- else %}
+  <div class="cs">
+    <div></div>
+    <div class="cs-body">
+      <section aria-labelledby="outcome">
+        <h2 id="outcome">Where it stands</h2>
+        <p>{{ p.outcome }}</p>
+        <p class="muted">There’s no full case study for this one yet.{% if p.internship %} It comes out of my work with <a href="{{ p.internship.href }}">{{ p.internship.label }}</a>.{% endif %} Want the detail? <a href="/contact/">Get in touch</a>.</p>
+      </section>
+      <p><a href="/work/">Back to all work</a></p>
+    </div>
+  </div>
+{%- endif %}
+</div>

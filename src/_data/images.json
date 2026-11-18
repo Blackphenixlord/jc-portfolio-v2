@@ -1,0 +1,212 @@
+{
+ "STUDENTBYSTUDENT": {
+  "w": 1148,
+  "h": 2040,
+  "widths": [
+   480,
+   960,
+   1148
+  ],
+  "fallback": "jpg"
+ },
+ "STUDENTBYSTUDENT2": {
+  "w": 2188,
+  "h": 3888,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "lanl": {
+  "w": 1723,
+  "h": 807,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "lanl2": {
+  "w": 4096,
+  "h": 3072,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "lanl3": {
+  "w": 2448,
+  "h": 3264,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "lanl4": {
+  "w": 3264,
+  "h": 2448,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa": {
+  "w": 2296,
+  "h": 4080,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa10": {
+  "w": 2296,
+  "h": 4080,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa13": {
+  "w": 3264,
+  "h": 2448,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa2": {
+  "w": 2296,
+  "h": 4080,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa3": {
+  "w": 2296,
+  "h": 4080,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa4": {
+  "w": 2296,
+  "h": 4080,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa5": {
+  "w": 2296,
+  "h": 4080,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa6": {
+  "w": 2296,
+  "h": 4080,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa7": {
+  "w": 2296,
+  "h": 4080,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nasa8": {
+  "w": 2296,
+  "h": 4080,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nerdvana-certificate": {
+  "w": 4096,
+  "h": 3072,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "nerdvana": {
+  "w": 2571,
+  "h": 1448,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "jpg"
+ },
+ "vitals-astronaut-answer": {
+  "w": 2560,
+  "h": 1600,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "png"
+ },
+ "vitals-login": {
+  "w": 2560,
+  "h": 1600,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "png"
+ },
+ "vitals-astronaut-vitals-planned": {
+  "w": 2560,
+  "h": 1600,
+  "widths": [
+   480,
+   960,
+   1440
+  ],
+  "fallback": "png"
+ }
+}

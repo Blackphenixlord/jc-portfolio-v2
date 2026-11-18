@@ -1,0 +1,17 @@
+---
+permalink: /og-data.json
+eleventyExcludeFromCollections: true
+---
+{%- set rows = [
+  { id: 'home', h: 'Joshua Collado', s: 'Dual enrollment student at UTRGV, South Texas', photo: 'nasa', cells: [['NASA HUNCH', 'Houston finals'], ['Los Alamos', 'Only student selected to visit'], ['Now building', 'VITALS, as team lead']] },
+  { id: 'work', h: 'Work', s: 'What I built, who it was for, and what came of it', photo: '', cells: [['Case studies', '5'], ['NASA HUNCH', 'Houston finals'], ['Now building', 'VITALS']] },
+  { id: 'experience', h: 'Experience', s: 'NASA HUNCH, UTRGV, RECON Technologies and Nerdvana', photo: 'lanl2', cells: [['Programs', '4'], ['Los Alamos', 'Only student selected to visit']] },
+  { id: 'about', h: 'About', s: 'Engineer, developer and builder from South Texas', photo: 'STUDENTBYSTUDENT', cells: [['Goal', 'Computer engineer'], ['Class of', '2027']] },
+  { id: 'resume', h: 'Résumé', s: 'Internships, coursework and presentations', photo: '', cells: [['NASA visits', '2'], ['Internships', 'NASA HUNCH, Los Alamos, RECON, Nerdvana']] },
+  { id: 'contact', h: 'Contact', s: 'Open to internships', photo: '', cells: [['Reply time', '24 to 48 hours']] }
+] %}
+[
+{%- for r in rows %}{{ r | jsonld | safe }},{% endfor %}
+{%- for p in projects %}{{ { id: p.slug, h: p.title, s: p.subtitle or p.org, photo: (p.photos[0].src if p.photos and p.photos.length else ''), cells: [['For', p.org], ['Role', p.role], ['Status', p.status]] } | jsonld | safe }},{% endfor %}
+{%- for e in experience %}{{ { id: 'exp-' + e.slug, h: e.name, s: e.long, photo: (e.photos[0].src if e.photos.length else ''), cells: [['Role', e.role], ['Years', e.years]] } | jsonld | safe }}{% if not loop.last %},{% endif %}{% endfor %}
+]

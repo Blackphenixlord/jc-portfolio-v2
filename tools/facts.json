@@ -1,0 +1,32 @@
+{
+  "_note": "Every fact from the old site (CONTENT.md, projects.js, site.js, internship pages) that must survive the rebuild. Wording can change; these strings can't. `forbid` lists things that must never appear.",
+  "must": [
+    "Joshua Collado", "joshuacollado636@gmail.com", "956-254-7815", "github.com/Blackphenixlord", "linkedin.com/in/joshua-collado",
+    "South Texas", "UTRGV", "Science Academy", "dual enrollment", "Class of 2027", "Expected graduation: 2027",
+    "Houston finals", "Inventory Chain System", "Human Exploration & Operations", "two-person team", "Rounds 1 & 2", "twice",
+    "RFID", "Final Design Report", "NASAHUNCHFDR2026JoshCollado.pdf",
+    "VITALS", "Team TETHER", "Team lead and diagnostic engine developer", "NVIDIA Jetson", "Ollama", "knowledge base", "Software & Technology",
+    "open slots", "Llama 3.2", "262", "18 / 19", "6 / 6", "35", "October 21, 2026", "not a medical device", "lunar-medical-diagnostic",
+    "Los Alamos National Laboratory", "VR Training Experience", "only student selected", "New Mexico", "with a partner", "Unreal Engine",
+    "UTRGV Research Progress Presentation for Los Alamos National Laboratory", "XR developer and simulation collaborator", "Delivered",
+    "Project Leader · Stack Developer · Hardware Manager",
+    "City of Progresso", "RECON Technologies", "Code Lead, Security Developer & Design Assistant", "Shipped", "secure routing", "input validation", "hardened deployment",
+    "official records", "remotely",
+    "Hall Pass", "Veterans Memorial", "Approved by principal", "Electron", "React", "TypeScript", "SQLite", "PIN-protected", "school ID", "offline",
+    "VLA-Enabled 3D Printing", "Voron", "G-code", "ML supervisor", "Cybersecurity Camp Lab", "Docker", "Virtual Machines",
+    "Project Evie", "Android and Windows", "Screen Deck", "PowerShell", "WPF", "per-app volume sliders", "home lab",
+    "Nerdvana", "STEM sandbox", "elementary", "with the CEO", "STEM Educator & Tech Developer", "Certificate of Completion",
+    "Python", "Java", "JavaScript", "C", "SQL", "HTML/CSS", "Bash", "GLSL", "Vite", "Tailwind", "Git", "Linux", "Fusion 360",
+    "Catalyst Club", "Treasurer", "Streaming Captain", "Big Red Ranch Ministries", "ECC Driver", "Minecraft Esports",
+    "Team HELIOS", "AtlasPoint", "four-person", "Rising Scholars Academy", "2021–2023", "P-TECH", "TSTC", "Texas Advanced Java Certification",
+    "AP Computer Science", "P.I.E²", "Region 1 Students Teach Students", "STISD presentation to incoming students",
+    "Bilingual", "Spanish", "Lofi hip-hop", "half workstation, half lab", "learn best by building",
+    "Artificial intelligence and machine learning", "Virtual reality and immersive systems", "Home automation and IoT",
+    "Cybersecurity and national security tech", "Competitive robotics and engineering design", "Music production and creative coding",
+    "Organized a student coding workshop on web design basics", "Mentored younger students in STEM projects",
+    "Innovative", "Driven", "Purposeful", "computer engineer",
+    "Available for opportunities", "Open to internships", "24 to 48 hours",
+    "Dyslexia mode", "2 NASA visits", "5+ CS courses", "3+ years building", "more interactive and accessible", "OpenDyslexic", "Ctrl K"
+  ],
+  "forbid": ["TSA", "BPA", "Cross Country", "Rotary", "joshuacollado656", "956-574-2556", "lorem", "[X]", "TODO"]
+}

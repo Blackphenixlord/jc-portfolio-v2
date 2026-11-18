@@ -1,0 +1,34 @@
+{#- Status with its kind: finished work in ink, moving work in a revision cloud. -#}
+{% macro status(p) -%}
+<span class="status" data-kind="{{ p.statusKind }}">{{ p.status }}</span>
+{%- endmacro %}
+
+{#- The sheet list. `rows` is a list of projects; numbered rows are case studies. -#}
+{% macro sheetList(rows, caption, site, filterable=false) -%}
+<table class="sheets"{% if filterable %} data-filter-table{% endif %}>
+  <caption class="sr-only">{{ caption }}</caption>
+  <thead>
+    <tr><th scope="col">Sheet</th><th scope="col">Project</th><th scope="col" class="org">For</th><th scope="col" class="role">My role</th><th scope="col">Years</th><th scope="col">Status</th></tr>
+  </thead>
+  <tbody>
+  {%- set shownDivider = false %}
+  {%- for p in rows %}
+    {%- if not p.sheet and not shownDivider %}{% set shownDivider = true %}
+    <tr class="divider" data-divider><td colspan="6">More work, no case study yet</td></tr>
+    {%- endif %}
+    <tr{% if not p.sheet %} class="short"{% endif %} data-cats="{{ p.categories | join(' ') }}">
+      <td class="no">{% if p.sheet %}{{ p.sheet }} / 5{% else %}<span class="sr-only">No case study</span>–{% endif %}</td>
+      <td class="proj"><a href="/work/{{ p.slug }}/">{{ p.title }}</a>{% if p.sheet %}<p>{{ p.subtitle }}</p>{% endif %}</td>
+      <td class="org">{{ p.org }}</td>
+      <td class="role">{{ p.role }}</td>
+      <td class="yrs">{{ p.years }}</td>
+      <td class="st">{{ status(p) }}</td>
+    </tr>
+  {%- endfor %}
+  </tbody>
+</table>
+{%- endmacro %}
+
+{% macro slot(s) -%}
+<div class="slot"><b>To fill: {{ s.label }}</b><p>{{ s.note }}</p></div>
+{%- endmacro %}

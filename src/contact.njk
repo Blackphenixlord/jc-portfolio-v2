@@ -1,0 +1,71 @@
+---
+layout: base.njk
+navKey: contact
+permalink: /contact/
+title: Contact Joshua Collado, open to internships
+description: Get in touch with Joshua Collado, a South Texas engineer and developer open to internships.
+ogImage: contact
+---
+<div class="wrap">
+  <header class="page-head">
+    <h1>Contact</h1>
+    <p class="lede">Let’s build something together.</p>
+  </header>
+
+  <div class="contact-grid">
+    <section aria-labelledby="ways-h">
+      <h2 id="ways-h">Ways to reach me</h2>
+      <ul class="ways mt-5" role="list">
+        <li><span class="k">Email</span><span><a href="mailto:{{ site.email }}">{{ site.email }}</a> <button class="toggle" type="button" data-copy="{{ site.email }}">Copy</button></span></li>
+        <li><span class="k">GitHub</span><a href="{{ site.github }}" rel="me">{{ site.githubLabel }}</a></li>
+        <li><span class="k">LinkedIn</span><a href="{{ site.linkedin }}" rel="me">{{ site.linkedinLabel }}</a></li>
+      </ul>
+      <ul class="status-list" role="list">
+        <li>Available for opportunities</li>
+        <li>Open to internships</li>
+        <li>I usually reply within 24 to 48 hours</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="form-h">
+      <h2 id="form-h">Send a message</h2>
+      <form class="form mt-5" id="contact-form" novalidate aria-label="Send Joshua a message"
+        data-endpoint="{{ site.contactEndpoint }}" data-key="{{ site.contactAccessKey }}" data-to="{{ site.email }}">
+        <div class="form-status" role="alert" tabindex="-1"></div>
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <p class="err" id="e-name"></p>
+          <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name">
+        </div>
+        <div class="field">
+          <label for="f-email">Your email</label>
+          <p class="err" id="e-email"></p>
+          <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@example.com" aria-describedby="e-email">
+        </div>
+        <div class="field">
+          <label for="f-subject">Subject <span class="muted">(optional)</span></label>
+          <input id="f-subject" name="subject" type="text" placeholder="Let’s work together">
+        </div>
+        <div class="field">
+          <label for="f-message">Message</label>
+          <p class="hint" id="h-message">At least 10 characters.</p>
+          <p class="err" id="e-message"></p>
+          <textarea id="f-message" name="message" required aria-describedby="h-message e-message" placeholder="Hey Joshua, I wanted to reach out about…"></textarea>
+        </div>
+        <div class="hp" aria-hidden="true"><label for="f-website">Leave this empty</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <div><button class="btn btn-primary" type="submit">Send message</button></div>
+      </form>
+
+      <div class="compose mt-5" id="compose" hidden tabindex="-1" aria-labelledby="compose-h">
+        <h3 id="compose-h">Your message is ready</h3>
+        <p>Send it from your mail app, or copy the message and send it however you like. Either way it goes to <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+        <pre id="compose-text"></pre>
+        <div class="actions">
+          <a class="btn btn-primary" id="compose-send" href="mailto:{{ site.email }}">Open in my mail app</a>
+          <button class="btn btn-quiet" type="button" id="compose-copy">Copy message</button>
+          <button class="btn btn-quiet" type="button" id="compose-edit">Edit instead</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

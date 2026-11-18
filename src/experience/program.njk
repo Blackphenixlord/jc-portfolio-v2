@@ -1,0 +1,75 @@
+---
+layout: base.njk
+navKey: experience
+pagination:
+  data: experience
+  size: 1
+  alias: e
+permalink: "/experience/{{ e.slug }}/"
+eleventyComputed:
+  title: "{{ e.name }} experience | Joshua Collado"
+  ogTitle: "{{ e.name }}"
+  description: "{{ e.summary | clip }}"
+  ogImage: "exp-{{ e.slug }}"
+---
+{%- set i = pagination.pageNumber %}
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><ol role="list"><li><a href="/">Home</a></li><li><a href="/experience/">Experience</a></li><li><span aria-current="page">{{ e.name }}</span></li></ol></nav>
+  <header class="page-head">
+    <h1>{{ e.name }} <span class="sub">{{ e.long }}</span></h1>
+    <p class="lede">{{ e.summary }}</p>
+  </header>
+
+  <dl class="tb" aria-label="Program details">
+    <div><dt>My role</dt><dd class="v">{{ e.role }}</dd></div>
+    <div><dt>Years</dt><dd class="v">{{ e.years }}</dd></div>
+    <div><dt>Areas</dt><dd class="sub">{{ e.tags | join(', ') }}</dd></div>
+  </dl>
+
+  <div class="cs">
+    <div></div>
+    <div class="cs-body">
+      {%- for sec in e.sections %}
+      <section aria-labelledby="s-{{ loop.index }}">
+        <h2 id="s-{{ loop.index }}">{{ sec.h }}</h2>
+        {%- for para in sec.p %}<p>{{ para }}</p>{% endfor %}
+      </section>
+      {%- endfor %}
+
+      {%- if e.projects.length %}
+      <section aria-labelledby="s-work">
+        <h2 id="s-work">The work</h2>
+        <ul class="programs" role="list">
+          {%- for slug in e.projects %}{% set p = projects | bySlug(slug) %}
+          <li><a href="/work/{{ p.slug }}/">{{ p.title }}</a><p class="yrs">{{ p.years }}</p><p>{{ p.status }}</p></li>
+          {%- endfor %}
+        </ul>
+      </section>
+      {%- endif %}
+
+      {%- if e.doc %}
+      <section aria-labelledby="s-doc">
+        <h2 id="s-doc">Final Design Report</h2>
+        <p>{{ e.doc.note }}</p>
+        <p><a href="{{ e.doc.href }}">{{ e.doc.label }}</a></p>
+      </section>
+      {%- endif %}
+
+      {%- if e.photos.length %}
+      <section aria-labelledby="s-photos">
+        <h2 id="s-photos">Photos</h2>
+        <div class="photos">
+          {%- for ph in e.photos %}
+          <figure>{% pic ph.src, ph.alt, "(max-width: 760px) 100vw, 30vw" %}{% if ph.caption %}<figcaption>{{ ph.caption }}</figcaption>{% endif %}</figure>
+          {%- endfor %}
+        </div>
+      </section>
+      {%- endif %}
+
+      <nav class="pager" aria-label="More programs">
+        {%- if i > 0 %}{% set prev = experience[i - 1] %}<a href="/experience/{{ prev.slug }}/"><span>Previous</span><strong>{{ prev.name }}</strong></a>{% endif %}
+        {%- if i < experience.length - 1 %}{% set next = experience[i + 1] %}<a class="next" href="/experience/{{ next.slug }}/"><span>Next</span><strong>{{ next.name }}</strong></a>{% endif %}
+      </nav>
+    </div>
+  </div>
+</div>

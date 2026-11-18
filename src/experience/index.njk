@@ -1,0 +1,22 @@
+---
+layout: base.njk
+navKey: experience
+title: Internships and programs | Joshua Collado
+description: Joshua Collado’s internships and programs. NASA HUNCH, UTRGV dual enrollment and the Los Alamos partnership, RECON Technologies and Nerdvana.
+ogImage: experience
+---
+<div class="wrap">
+  <header class="page-head">
+    <h1>Experience</h1>
+    <p class="lede">Real-world engineering, research and development across four programs.</p>
+  </header>
+  <ul class="programs" role="list">
+    {%- for e in experience %}
+    <li>
+      <a href="/experience/{{ e.slug }}/">{{ e.name }}</a>
+      <p class="yrs">{{ e.years }}</p><p>{{ e.role }}</p>
+      <p class="desc">{{ e.summary }}</p>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>

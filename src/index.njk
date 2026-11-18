@@ -1,0 +1,79 @@
+---
+layout: base.njk
+navKey: home
+title: Joshua Collado, student developer in South Texas
+ogTitle: Joshua Collado
+description: Dual enrollment student at UTRGV from South Texas. NASA HUNCH Houston finalist, only student selected to visit Los Alamos, team lead on VITALS.
+ogImage: home
+heroImage: nasa
+heroSizes: "(max-width: 900px) 100vw, 40vw"
+---
+{%- from "partials/macros.njk" import sheetList, status %}
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <h1 id="hero-h"><span>Joshua</span> <span>Collado</span></h1>
+      <p class="intro">I’m a dual enrollment student at UTRGV from South Texas. I build software for real users: NASA HUNCH, a Los Alamos-partnered VR project, a city website, and a classroom app a principal approved.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="/work/">See the work</a>
+        <a class="btn btn-quiet" href="/resume/">Read my résumé</a>
+      </div>
+    </div>
+
+    <figure class="hero-photo">
+      {% pic "nasa", "Joshua, right, with his NASA HUNCH teammate and a NASA representative in a blue flight suit, standing under a rocket on display in Houston", "(max-width: 900px) 100vw, 40vw", { eager: true } %}
+      <figcaption>NASA HUNCH Houston finals</figcaption>
+    </figure>
+
+    <dl class="tb" aria-label="Highlights">
+      <div><dt>NASA HUNCH</dt><dd class="v">Houston finals</dd><dd class="sub">Inventory Chain System, 2025–26</dd></div>
+      <div><dt>Los Alamos National Laboratory</dt><dd class="v">Only student selected to visit</dd><dd class="sub">VR Training Experience, 2025–26</dd></div>
+      <div><dt>Now building</dt><dd class="v">VITALS, as team lead</dd><dd class="sub">NASA HUNCH 2026–27</dd></div>
+      <div><dt>Available</dt><dd class="v">Open to internships</dd><dd class="sub"><a href="/contact/">Get in touch</a></dd></div>
+      <div data-egg-logo><dt>Drawn by</dt><dd class="v drawn">{% include "partials/logo.njk" %}J. Collado</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="work-h">
+  <div class="wrap">
+    <div class="head">
+      <h2 id="work-h">Work</h2>
+      <p>What I built, who it was for, and what came of it. The first five have full case studies.</p>
+    </div>
+    {{ sheetList(projects, 'Projects by Joshua Collado', site) }}
+    <p class="mt-5"><a href="/work/">All work, with filters by discipline</a></p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="about-h">
+  <div class="wrap split">
+    <div class="stack">
+      <h2 id="about-h">About</h2>
+      <p>I take college classes at UTRGV in the morning and high school classes at the Science Academy in the afternoon. I learn best by building, not watching.</p>
+      <p>I want to become a computer engineer. Right now that means leading Team TETHER on VITALS, writing the software for an AI-supervised 3D printer, and building the lab for a UTRGV cybersecurity camp.</p>
+      <p><a href="/about/">More about me</a></p>
+    </div>
+    <div>
+      <h3 class="sr-only">Programs</h3>
+      <ul class="programs" role="list">
+        {%- for e in experience %}
+        <li><a href="/experience/{{ e.slug }}/">{{ e.name }}</a><p class="yrs">{{ e.years }}</p><p>{{ e.role }}</p></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="reach-h">
+  <div class="wrap reach">
+    <h2 id="reach-h">Open to internships</h2>
+    <p class="muted">Email is the fastest way to reach me. I usually reply within 24 to 48 hours.</p>
+    <p class="email"><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    <div class="actions">
+      <button class="btn btn-quiet" type="button" data-copy="{{ site.email }}">Copy email address</button>
+      <a class="btn btn-quiet" href="{{ site.github }}">GitHub</a>
+      <a class="btn btn-quiet" href="{{ site.linkedin }}">LinkedIn</a>
+    </div>
+  </div>
+</section>
